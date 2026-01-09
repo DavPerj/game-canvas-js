@@ -43,11 +43,12 @@ const speedPowerUp = {
 const keys = {}
 
 function setKeyTrue(e) {
-    keys[e.keys] = true
+    // console.log("apertou: ", e.key)
+    keys[e.key] = true
 }
 
 function setKeyFalse(e) {
-    keys[e.keys] = false
+    keys[e.key] = false
 }
 
 window.addEventListener("keydown", setKeyTrue)
@@ -62,12 +63,6 @@ function update() {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
-    ctx.textAlign = "center";
-    ctx.fillText('Jogo do Davi', 40, 590, 200)
-    ctx.fillStyle = "black";
-    ctx.font = "Arial";
 
     exibir('blue', player);
     exibir('red', enemy);
@@ -85,6 +80,12 @@ function draw() {
     exibir('lawngreen', curaPowerUp[1]);
 
     exibir('aqua', speedPowerUp);
+
+
+    ctx.textAlign = "center";
+    ctx.fillText('Jogo do Davi', 40, 590, 200)
+    ctx.fillStyle = "black";
+    ctx.font = "Arial";
 }
 
 function exibir(cor, objeto) {
@@ -92,5 +93,10 @@ function exibir(cor, objeto) {
     ctx.fillRect(objeto.x, objeto.y, objeto.size, objeto.size);
 }
 
-draw()
+function gameLoop() {
+    update()
+    draw()
+    requestAnimationFrame(gameLoop)
+}
 
+gameLoop()
