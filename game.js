@@ -19,7 +19,7 @@ const enemy = {
     alive: true
 }
 
-let coins = [
+const coins = [
     {x: 70, y:300, size: 20, collected: false},
     {x: 400, y:40, size: 20, collected: false},
     {x: 405, y:550, size: 20, collected: false},
@@ -78,6 +78,12 @@ function update() {
     if (keys["ArrowDown"]) player.y += player.speed
     if (keys["ArrowRight"]) player.x += player.speed
     if (keys["ArrowLeft"]) player.x -= player.speed
+
+    for (let i = 0; i < coins.length; i++) {
+        if (!coins[i].collected && isColliding(player, coins[i])) {
+            coins[i].collected = true
+        }
+    }
 }
 
 function draw() {
@@ -89,20 +95,17 @@ function draw() {
     ctx.fillText('Jogo do Davi', 40, 590, 200);
     ctx.fillStyle = "black";
     ctx.font = "Arial";
+
+    for (let i = 0; i < coins.length; i++) {
+        if (coins[i].collected == false) {
+            exibir("yellow", coins[i])
+        }
+    }
 }
 
 function rodarNaTela() {
     exibir('blue', player);
     exibir('red', enemy);
-
-    exibir('yellow', coins[0]);
-    exibir('yellow', coins[1]);
-    exibir('yellow', coins[2]);
-    exibir('yellow', coins[3]);
-    exibir('yellow', coins[4]);
-    exibir('yellow', coins[5]);
-    exibir('yellow', coins[6]);
-    exibir('yellow', coins[7]);
 
     exibir('lawngreen', curaPowerUp[0]);
     exibir('lawngreen', curaPowerUp[1]);
