@@ -86,16 +86,24 @@ function update() {
 
 function powerUps() {
     if (speedPowerUp.collected == true) {
-        player.speed = 8
+        if (player.speed == 5) {
+            player.speed = player.speed + 3
+            console.log(player.speed)
+        }
     }
 
     if (curaPowerUp[0].collected == true) {
-        player.life = 4
+        if (player.life == 3) {
+            player.life++
+            console.log(player.life)
+        }
     }
 
     if (curaPowerUp[1].collected == true) {
-        player.life++
-        console.log(player.life)
+        if (player.life == 4) {
+            player.life++
+            console.log(player.life)
+        }
     }
 }
 
@@ -106,15 +114,21 @@ function drawColetaveis() {
         }
     }
 
-    for (let i = 0; i < curaPowerUp.length; i++) {
-        if (curaPowerUp[i].collected == false) {
-            exibir('lawngreen', curaPowerUp[i]);
+        if (speedPowerUp.collected == false) {
+            exibir('aqua', speedPowerUp);
         }
-    }
-    
-    if (speedPowerUp.collected == false) {
-        exibir('aqua', speedPowerUp);
-    }
+
+        if (curaPowerUp[0].collected == false) {
+            exibir('lawngreen', curaPowerUp[0]);
+        }
+
+        if (curaPowerUp[1].collected == true) {
+            return;
+        }
+
+        if (curaPowerUp[0].collected == true) {
+            exibir('lawngreen', curaPowerUp[1])
+        }
 }
 
 function coletaveis() {
