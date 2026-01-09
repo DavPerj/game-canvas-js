@@ -123,8 +123,4 @@ function gameLoop() {
     requestAnimationFrame(gameLoop)
 }
 
-if (isColliding(player, coins[0])) {
-    console.log(coins[0])
-}
-
 gameLoop()
