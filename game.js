@@ -6,6 +6,7 @@ const player = {
     size: 40,
     x: 50,
     y: 50,
+    life: 3,
     won: false,
     alive: true
 }
@@ -14,7 +15,8 @@ const enemy = {
     speed: 3,
     size: 40,
     x: 400,
-    y: 300
+    y: 300,
+    alive: true
 }
 
 const coins = [
@@ -37,6 +39,14 @@ const speedPowerUp = {
     x: 670,
     y: 530, 
     size: 27, 
+    collected: false
+}
+
+const finalPowerUp = {
+    x: 50,
+    y: 100,
+    size: 30,
+    speed: 3,
     collected: false
 }
 
@@ -64,6 +74,15 @@ function update() {
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    rodarNaTela();
+
+    ctx.textAlign = "center";
+    ctx.fillText('Jogo do Davi', 40, 590, 200);
+    ctx.fillStyle = "black";
+    ctx.font = "Arial";
+}
+
+function rodarNaTela() {
     exibir('blue', player);
     exibir('red', enemy);
 
@@ -81,11 +100,7 @@ function draw() {
 
     exibir('aqua', speedPowerUp);
 
-
-    ctx.textAlign = "center";
-    ctx.fillText('Jogo do Davi', 40, 590, 200)
-    ctx.fillStyle = "black";
-    ctx.font = "Arial";
+    exibir('darkblue', finalPowerUp)
 }
 
 function exibir(cor, objeto) {
