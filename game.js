@@ -19,7 +19,7 @@ const enemy = {
     alive: true
 }
 
-const coins = [
+let coins = [
     {x: 70, y:300, size: 20, collected: false},
     {x: 400, y:40, size: 20, collected: false},
     {x: 405, y:550, size: 20, collected: false},
@@ -49,6 +49,15 @@ const finalPowerUp = {
     speed: 3,
     collected: false
 }
+
+function isColliding(a, b) {
+    return (
+      a.x < b.x + b.size &&
+      a.x + a.size > b.x &&
+      a.y < b.y + b.size &&
+      a.y + a.size > b.y
+    );
+  }
 
 const keys = {}
 
@@ -112,6 +121,10 @@ function gameLoop() {
     update()
     draw()
     requestAnimationFrame(gameLoop)
+}
+
+if (isColliding(player, coins[0])) {
+    console.log(coins[0])
 }
 
 gameLoop()
