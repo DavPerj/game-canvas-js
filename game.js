@@ -80,6 +80,23 @@ function update() {
     if (keys["ArrowLeft"]) player.x -= player.speed
 
     coletaveis()
+
+    powerUps()
+}
+
+function powerUps() {
+    if (speedPowerUp.collected == true) {
+        player.speed = 8
+    }
+
+    if (curaPowerUp[0].collected == true) {
+        player.life = 4
+    }
+
+    if (curaPowerUp[1].collected == true) {
+        player.life++
+        console.log(player.life)
+    }
 }
 
 function drawColetaveis() {
@@ -87,6 +104,16 @@ function drawColetaveis() {
         if (coins[i].collected == false) {
             exibir("yellow", coins[i])
         }
+    }
+
+    for (let i = 0; i < curaPowerUp.length; i++) {
+        if (curaPowerUp[i].collected == false) {
+            exibir('lawngreen', curaPowerUp[i]);
+        }
+    }
+    
+    if (speedPowerUp.collected == false) {
+        exibir('aqua', speedPowerUp);
     }
 }
 
@@ -96,29 +123,33 @@ function coletaveis() {
             coins[i].collected = true
         }
     }
+
+    for (let i = 0; i < curaPowerUp.length; i++) {
+        if (!curaPowerUp[i].collected && isColliding(player, curaPowerUp[i])) {
+            curaPowerUp[i].collected = true
+        }
+    }
+
+    if (!speedPowerUp.collected && isColliding(player, speedPowerUp)) {
+        speedPowerUp.collected = true
+    }
 }
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     rodarNaTela();
+    drawColetaveis()
 
     ctx.textAlign = "center";
     ctx.fillText('Jogo do Davi', 40, 590, 200);
     ctx.fillStyle = "black";
     ctx.font = "Arial";
-
-    drawColetaveis()
 }
 
 function rodarNaTela() {
     exibir('blue', player);
     exibir('red', enemy);
-
-    exibir('lawngreen', curaPowerUp[0]);
-    exibir('lawngreen', curaPowerUp[1]);
-
-    exibir('aqua', speedPowerUp);
 
     exibir('darkblue', finalPowerUp)
 }
