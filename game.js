@@ -79,6 +79,18 @@ function update() {
     if (keys["ArrowRight"]) player.x += player.speed
     if (keys["ArrowLeft"]) player.x -= player.speed
 
+    coletaveis()
+}
+
+function drawColetaveis() {
+    for (let i = 0; i < coins.length; i++) {
+        if (coins[i].collected == false) {
+            exibir("yellow", coins[i])
+        }
+    }
+}
+
+function coletaveis() {
     for (let i = 0; i < coins.length; i++) {
         if (!coins[i].collected && isColliding(player, coins[i])) {
             coins[i].collected = true
@@ -96,11 +108,7 @@ function draw() {
     ctx.fillStyle = "black";
     ctx.font = "Arial";
 
-    for (let i = 0; i < coins.length; i++) {
-        if (coins[i].collected == false) {
-            exibir("yellow", coins[i])
-        }
-    }
+    drawColetaveis()
 }
 
 function rodarNaTela() {
