@@ -6,7 +6,7 @@ const player = {
     size: 40,
     x: 50,
     y: 50,
-    life: 3,
+    life: 2,
     won: false,
     alive: true
 }
@@ -118,16 +118,18 @@ function drawColetaveis() {
             exibir('aqua', speedPowerUp);
         }
 
-        if (curaPowerUp[0].collected == false) {
-            exibir('lawngreen', curaPowerUp[0]);
-        }
-
-        if (curaPowerUp[1].collected == true) {
-            return;
-        }
-
-        if (curaPowerUp[0].collected == true) {
-            exibir('lawngreen', curaPowerUp[1])
+        if (player.life < 3) {
+            if (curaPowerUp[0].collected == false) {
+                exibir('lawngreen', curaPowerUp[0]);
+            }
+    
+            if (curaPowerUp[1].collected == true) {
+                return;
+            }
+    
+            if (curaPowerUp[0].collected == true) {
+                exibir('lawngreen', curaPowerUp[1])
+            }
         }
 }
 
