@@ -92,11 +92,5 @@ function exibir(cor, objeto) {
     ctx.fillRect(objeto.x, objeto.y, objeto.size, objeto.size);
 }
 
-
-function gameLoop() {
-    while (1 == 1) {
-        draw()
-        update()
-    }
-}
+draw()
 

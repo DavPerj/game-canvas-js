@@ -17,3 +17,9 @@
     - Copie o caminho dele e cole no navegador. Ex: "C://Users/davi/projetos/game-canvas-js/v1/index.js"
 - Para rodar o arquivo study.js use o node. Garanta que esteja na pasta do arquivo js
     - `node study.js`
+
+# Comandos git
+- Quando terminou de alterar algum arquivo e quer subir, siga os passos:
+    - `git add {nome do arquivo}` ou `git add .` se quiser adicionar tudo
+    - `git commit -m "{sua mensagem}"`, recomendo usar o padrão "feat: {sua mensagem}"
+    - `git push` ou se for seu primeiro commit `git push -u origin main`
