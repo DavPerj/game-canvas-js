@@ -46,8 +46,8 @@ const speedPowerUp = {
 }
 
 const sizePowerUp = {
-    x: 530,
-    y: 70,
+    x: 670,
+    y: 60,
     size: 20,
     collected: false
 }
