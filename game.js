@@ -57,7 +57,8 @@ const finalPowerUp = {
     y: 100,
     size: 30,
     speed: 3,
-    collected: false
+    collected: false,
+    visivel: false
 }
 
 function isColliding(a, b) {
@@ -90,8 +91,10 @@ function update() {
     if (keys["ArrowLeft"]) player.x -= player.speed
 
     coletaveis()
-
     powerUps()
+
+    player.x = Math.max(0, Math.min(canvas.width - player.size, player.x))
+    player.y = Math.max(0, Math.min(canvas.height - player.size, player.y))
 }
 
 function powerUps() {
@@ -113,6 +116,10 @@ function powerUps() {
             player.size = player.size + 15
         }
     }
+
+    // if (finalPowerUp.collected == true) {
+        
+    // }
 }
 
 function drawColetaveis() {
