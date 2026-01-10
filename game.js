@@ -6,7 +6,7 @@ const player = {
     size: 40,
     x: 50,
     y: 50,
-    life: 2,
+    life: 3,
     won: false,
     alive: true
 }
@@ -30,10 +30,13 @@ const coins = [
     {x: 550, y:420, size: 20, collected: false}
 ]
 
-const curaPowerUp = [
-    {x: 70, y: 530, size: 23, collected: false},
-    {x: 670, y: 80, size: 23, collected: false}
-]
+const curaPowerUp = {    
+    x: 70,
+    y: 530,
+    size: 23, 
+    collected: false
+}
+
 
 const speedPowerUp = {
     x: 670,
@@ -92,17 +95,9 @@ function powerUps() {
         }
     }
 
-    if (curaPowerUp[0].collected == true) {
-        if (player.life == 3) {
+    if (curaPowerUp.collected == true) {
+        if (player.life < 3) {
             player.life++
-            console.log(player.life)
-        }
-    }
-
-    if (curaPowerUp[1].collected == true) {
-        if (player.life == 4) {
-            player.life++
-            console.log(player.life)
         }
     }
 }
@@ -114,23 +109,13 @@ function drawColetaveis() {
         }
     }
 
-        if (speedPowerUp.collected == false) {
-            exibir('aqua', speedPowerUp);
-        }
+    if (speedPowerUp.collected == false) {
+        exibir('aqua', speedPowerUp);
+    }
 
-        if (player.life < 3) {
-            if (curaPowerUp[0].collected == false) {
-                exibir('lawngreen', curaPowerUp[0]);
-            }
-    
-            if (curaPowerUp[1].collected == true) {
-                return;
-            }
-    
-            if (curaPowerUp[0].collected == true) {
-                exibir('lawngreen', curaPowerUp[1])
-            }
-        }
+    if (curaPowerUp.collected == false && player.life == 1) {
+        exibir('forestgreen', curaPowerUp)
+    }
 }
 
 function coletaveis() {
@@ -140,10 +125,8 @@ function coletaveis() {
         }
     }
 
-    for (let i = 0; i < curaPowerUp.length; i++) {
-        if (!curaPowerUp[i].collected && isColliding(player, curaPowerUp[i])) {
-            curaPowerUp[i].collected = true
-        }
+    if (!curaPowerUp.collected && isColliding(player, curaPowerUp)) {
+        curaPowerUp.collected = true
     }
 
     if (!speedPowerUp.collected && isColliding(player, speedPowerUp)) {
