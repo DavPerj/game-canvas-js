@@ -20,13 +20,13 @@ const enemy = {
 }
 
 const coins = [
-    {x: 50, y:300, size: 20, collected: false},
-    {x: 430, y:40, size: 20, collected: false},
-    {x: 380, y:550, size: 20, collected: false},
-    {x: 680, y:300, size: 20, collected: false},
-    {x: 270, y:180, size: 20, collected: false},
-    {x: 210, y:420, size: 20, collected: false},
-    {x: 530, y:180, size: 20, collected: false},
+    {x: 50, y:250, size: 20, collected: false},
+    {x: 430, y:60, size: 20, collected: false},
+    {x: 400, y:530, size: 20, collected: false},
+    {x: 700, y:300, size: 20, collected: false},
+    {x: 270, y:150, size: 20, collected: false},
+    {x: 230, y:450, size: 20, collected: false},
+    {x: 530, y:220, size: 20, collected: false},
     {x: 570, y:420, size: 20, collected: false}
 ]
 
