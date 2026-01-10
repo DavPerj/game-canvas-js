@@ -45,6 +45,13 @@ const speedPowerUp = {
     collected: false
 }
 
+const sizePowerUp = {
+    x: 530,
+    y: 70,
+    size: 20,
+    collected: false
+}
+
 const finalPowerUp = {
     x: 50,
     y: 100,
@@ -100,6 +107,12 @@ function powerUps() {
             player.life++
         }
     }
+
+    if (sizePowerUp.collected == true) {
+        if (player.size == 40) {
+            player.size = player.size + 15
+        }
+    }
 }
 
 function drawColetaveis() {
@@ -116,6 +129,10 @@ function drawColetaveis() {
     if (curaPowerUp.collected == false && player.life == 1) {
         exibir('forestgreen', curaPowerUp)
     }
+
+    if (sizePowerUp.collected == false) {
+        exibir('coral', sizePowerUp)
+    }
 }
 
 function coletaveis() {
@@ -131,6 +148,10 @@ function coletaveis() {
 
     if (!speedPowerUp.collected && isColliding(player, speedPowerUp)) {
         speedPowerUp.collected = true
+    }
+
+    if (!sizePowerUp.collected && isColliding(player, sizePowerUp)) {
+        sizePowerUp.collected = true
     }
 }
 
