@@ -53,7 +53,7 @@ const sizePowerUp = {
 }
 
 const finalPowerUp = {
-    x: 50,
+    x: 999,
     y: 100,
     size: 30,
     speed: 3,
@@ -117,9 +117,9 @@ function powerUps() {
         }
     }
 
-    // if (finalPowerUp.collected == true) {
-        
-    // }
+    if (finalPowerUp.collected == true) {
+        enemy.speed = 1
+    }
 }
 
 function drawColetaveis() {
@@ -128,6 +128,17 @@ function drawColetaveis() {
             exibir("yellow", coins[i])
         }
     }
+
+    if (coins.every(coin => coin.collected === true)) {
+        // Código a ser executado se todas as moedas foram coletadas
+        finalPowerUp.visivel = true
+        finalPowerUp.x = 400
+        finalPowerUp.y = 350
+    }
+
+    // if (coins[0].collected == true && coins[1].collected == true && coins[2].collected == true && coins[3].collected == true  && coins[4].collected == true && coins[5].collected == true && coins[6].collected == true && coins[7].collected == true) {
+
+    // }
 
     if (speedPowerUp.collected == false) {
         exibir('aqua', speedPowerUp);
@@ -139,6 +150,10 @@ function drawColetaveis() {
 
     if (sizePowerUp.collected == false) {
         exibir('coral', sizePowerUp)
+    }
+
+    if (finalPowerUp.visivel == true && finalPowerUp.collected == false) {
+        exibir('darkblue', finalPowerUp)
     }
 }
 
@@ -160,6 +175,10 @@ function coletaveis() {
     if (!sizePowerUp.collected && isColliding(player, sizePowerUp)) {
         sizePowerUp.collected = true
     }
+
+    if (!finalPowerUp.collected && isColliding(player, finalPowerUp)) {
+        finalPowerUp.collected = true
+    }
 }
 
 function draw() {
@@ -176,9 +195,12 @@ function draw() {
 
 function rodarNaTela() {
     exibir('blue', player);
-    exibir('red', enemy);
 
-    exibir('darkblue', finalPowerUp)
+    if (finalPowerUp.collected == false) {
+        exibir('red', enemy);
+    } else {
+        exibir('blueviolet', enemy)
+    }
 }
 
 function exibir(cor, objeto) {
